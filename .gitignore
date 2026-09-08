@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Media and temporary files
+*.mp4
+*.mkv
+*.mov
+*.avi
+*.wav
+*.mp3
+*.m4a
+*.flac
+*.ogg
+temp/
+tmp/
+*.tmp
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# OS files
+.DS_Store
+Thumbs.db
