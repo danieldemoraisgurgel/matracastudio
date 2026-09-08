@@ -29,13 +29,13 @@ O **Matraca Studio** é uma suíte completa de localização e dublagem de víde
 
 | Idioma | Código | Suporte |
 | :--- | :---: | :---: |
+| 🇧🇷 **Português do Brasil (pt-BR)** | `pt-BR` | Transcrição, Tradução e Clonagem |
 | 🇺🇸 **Inglês (English)** | `en` | Transcrição, Tradução e Clonagem |
 | 🇪🇸 **Espanhol (Español)** | `es` | Transcrição, Tradução e Clonagem |
 | 🇫🇷 **Francês (Français)** | `fr` | Transcrição, Tradução e Clonagem |
 | 🇩🇪 **Alemão (Deutsch)** | `de` | Transcrição, Tradução e Clonagem |
 | 🇨🇳 **Chinês Simplificado (中文)** | `zh-CN` | Transcrição, Tradução e Clonagem |
 | 🇸🇦 **Árabe (العربية)** | `ar` | Transcrição, Tradução e Clonagem |
-| 🇧🇷 **Português (Português)** | `pt` | Transcrição, Tradução e Clonagem |
 | 🇮🇹 **Italiano (Italiano)** | `it` | Transcrição, Tradução e Clonagem |
 | 🇯🇵 **Japonês (日本語)** | `ja` | Transcrição, Tradução e Clonagem |
 | 🇷🇺 **Russo (Русский)** | `ru` | Transcrição, Tradução e Clonagem |
