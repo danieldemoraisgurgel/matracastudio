@@ -15,12 +15,14 @@ O **Matraca Studio** é uma suíte completa de localização e dublagem de víde
 ## ✨ Principais Funcionalidades
 
 - 🎥 **Entrada Universal de Mídia**: Suporte para vídeos (`.mp4`, `.mov`, `.mkv`, `.avi`), faixas de áudio (`.wav`, `.mp3`, `.m4a`) ou gravação direta pelo microfone.
-- 🗣️ **Reconhecimento Preciso (Whisper)**: Transcrição automática com alta fidelidade e detecção do idioma de origem (executado uma única vez por mídia, otimizando o processamento em lote).
-- 🌍 **Dublagem Multi-Idioma em Lote (Checkboxes)**: Permite selecionar um ou múltiplos idiomas de destino simultâneos via caixas de seleção, com botões para "Selecionar Todos" e "Limpar Seleção". O pipeline processa cada idioma sequencialmente sem retrabalho manual.
-- 🧬 **Clonagem de Voz Zero-Shot (OmniVoice)**: Preserva o timbre, entonação e características vocais únicas de quem falou em cada idioma de destino.
-- ⏱️ **Sincronização Temporal Milimétrica**: Algoritmo inteligente com filtro `atempo` via FFmpeg que acelera ou desacelera a fala sem distorcer o tom (*pitch-preserved time stretch*), casando a dublagem perfeitamente com o tempo do vídeo.
-- 🎬 **Remuxing Instantâneo de Vídeo**: Substituição direta da trilha de áudio no vídeo original usando cópia de stream (`-c:v copy`), sem perda de qualidade visual e renderização em segundos.
-- 📥 **Download Individual dos Arquivos Gerados**: Download individual de cada arquivo gerado (vídeos MP4 dublados e áudios WAV identificados claramente com o nome e idioma), além de players de prévia imediata e tabela detalhada de métricas.
+- 🗣️ **Reconhecimento Preciso e Transcrição Editável**: Transcrição automática com Whisper e detecção do idioma de origem. Permite **revisar e ajustar palavras, pontuações ou nomes próprios** antes de iniciar a dublagem.
+- 🌍 **Dublagem Multi-Idioma em Lote (Checkboxes)**: Permite selecionar múltiplos idiomas de destino simultâneos (Inglês, Espanhol, Francês, Alemão, etc.). Cada idioma é traduzido e sintetizado no idioma correto de forma estrita e sequencial.
+- 🧬 **Clonagem de Voz Zero-Shot de Alta Fidelidade (OmniVoice)**: Pré-processamento e normalização vocal com `loudnorm` e filtro passa-alta, preservando o timbre, entonação e características vocais únicas em cada idioma.
+- ⏱️ **Sincronização Temporal Milimétrica (Pronta para YouTube)**: Ajuste fino com filtro `atempo` via FFmpeg preservando o tom (*pitch-preserved time stretch*), garantindo que a fala case perfeitamente com a duração do vídeo original.
+- 🎧 **Qualidade de Áudio de Estúdio (48 kHz / AAC 256 kbps)**: Exportação em 48.000 Hz para conformidade total com os padrões de streaming e publicação em alta resolução no YouTube.
+- 🧹 **Gestão Eficiente de GPU**: Liberação imediata de VRAM com `torch.cuda.empty_cache()` após cada idioma, prevenindo estouro de memória (*CUDA Out Of Memory*) na GPU T4.
+- 🎬 **Remuxing Instantâneo de Vídeo**: Substituição da trilha de áudio no vídeo original usando cópia de stream (`-c:v copy`), sem perda de qualidade visual e renderização em segundos.
+- 📥 **Download Individual dos Arquivos Gerados**: Download individual de cada arquivo gerado (vídeos MP4 dublados e áudios WAV 48kHz identificados por idioma), além de players de prévia imediata.
 - ✍️ **Aba de Clonagem Livre (TTS)**: Permite sintetizar qualquer texto digitado com a sua voz clonada.
 
 ---
@@ -48,17 +50,18 @@ O **Matraca Studio** é uma suíte completa de localização e dublagem de víde
 flowchart LR
     A[Vídeo MP4 / Áudio] --> B[Extração do Áudio 24kHz]
     B --> C[Whisper STT]
-    C --> D[Transcrição e Idioma]
-    D --> E[Tradução Segmentada]
-    B --> F[Amostra Vocal 5-10s]
-    E --> G[OmniVoice Voice Cloning]
+    C --> D[Transcrição Editável no Gradio]
+    D -->|Usuário revisa texto| E[Tradução Multi-Idioma]
+    B --> F[Amostra Vocal com Loudnorm]
+    E --> G[OmniVoice com language explícito]
     F --> G
     G --> H[Áudio Sintetizado]
-    H --> I[FFmpeg Time-Stretching atempo]
-    I --> J[Áudio Sincronizado WAV]
-    A --> K[FFmpeg Video Remux -c:v copy]
+    H --> I[FFmpeg Time-Stretching atempo 48kHz]
+    I --> J[Áudio Sincronizado WAV 48kHz]
+    A --> K[FFmpeg Video Remux AAC 256k]
     J --> K
     K --> L[Vídeo MP4 Dublado Final]
+    L --> M[torch.cuda.empty_cache]
 ```
 
 ---
@@ -68,14 +71,20 @@ flowchart LR
 1. Abra o notebook diretamente no Google Colab clicando no badge abaixo:  
    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/danieldemoraisgurgel/matracastudio/blob/main/Matraca_Studio.ipynb)
 2. Ative a aceleração por GPU:
-   - No menu superior, acerte em **Ambiente de Execução** (*Runtime*) ➔ **Alterar tipo de ambiente de execução** (*Change runtime type*).
+   - No menu superior, clique em **Ambiente de Execução** (*Runtime*) ➔ **Alterar tipo de ambiente de execução** (*Change runtime type*).
    - Selecione **T4 GPU** e salve.
 3. Execute as células sequencialmente:
    - **Passo 1:** Instala as dependências e o FFmpeg.
    - **Passo 2:** Carrega o Whisper e o OmniVoice na VRAM da GPU.
    - **Passo 3:** Compila o motor de sincronização temporal e tradução robusta.
    - **Passo 4:** Inicia a aplicação Gradio e gera o link público compartilhavel (`https://...gradio.live`).
-4. Abra o link da interface, suba o seu vídeo ou áudio, marque as caixas de seleção com os idiomas de destino desejados (ou utilize o botão **☑️ Selecionar Todos**) e clique em **✨ Dublar e Sincronizar Vídeo/Áudio**. Ao concluir, baixe os vídeos e áudios gerados individualmente!
+4. **Utilizando a Interface:**
+   - Envie seu vídeo ou áudio.
+   - Clique em **📝 1. Transcrever e Analisar Áudio Original**.
+   - Leia e ajuste qualquer palavra na caixa de transcrição caso necessário.
+   - Marque os idiomas de destino desejados (**Inglês, Espanhol**, etc.).
+   - Clique em **✨ 2. Dublar e Sincronizar Vídeo/Áudio**.
+   - Acompanhe a barra de progresso em tempo real e faça o download dos arquivos em alta definição!
 
 ---
 
