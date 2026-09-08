@@ -15,12 +15,12 @@ O **Matraca Studio** é uma suíte completa de localização e dublagem de víde
 ## ✨ Principais Funcionalidades
 
 - 🎥 **Entrada Universal de Mídia**: Suporte para vídeos (`.mp4`, `.mov`, `.mkv`, `.avi`), faixas de áudio (`.wav`, `.mp3`, `.m4a`) ou gravação direta pelo microfone.
-- 🗣️ **Reconhecimento Preciso (Whisper)**: Transcrição automática com alta fidelidade e detecção do idioma de origem.
-- 🌍 **Tradução em Chunks Inteligentes**: Sistema sem limite de caracteres (supera a barreira de 5.000 caracteres de APIs padrão com chunking por final de frase).
-- 🧬 **Clonagem de Voz Zero-Shot (OmniVoice)**: Preserva o timbre, entonação e características vocais únicas de quem falou.
+- 🗣️ **Reconhecimento Preciso (Whisper)**: Transcrição automática com alta fidelidade e detecção do idioma de origem (executado uma única vez por mídia, otimizando o processamento em lote).
+- 🌍 **Dublagem Multi-Idioma em Lote (Checkboxes)**: Permite selecionar um ou múltiplos idiomas de destino simultâneos via caixas de seleção, com botões para "Selecionar Todos" e "Limpar Seleção". O pipeline processa cada idioma sequencialmente sem retrabalho manual.
+- 🧬 **Clonagem de Voz Zero-Shot (OmniVoice)**: Preserva o timbre, entonação e características vocais únicas de quem falou em cada idioma de destino.
 - ⏱️ **Sincronização Temporal Milimétrica**: Algoritmo inteligente com filtro `atempo` via FFmpeg que acelera ou desacelera a fala sem distorcer o tom (*pitch-preserved time stretch*), casando a dublagem perfeitamente com o tempo do vídeo.
 - 🎬 **Remuxing Instantâneo de Vídeo**: Substituição direta da trilha de áudio no vídeo original usando cópia de stream (`-c:v copy`), sem perda de qualidade visual e renderização em segundos.
-- 💻 **Interface Web Moderna (Gradio)**: Player de vídeo e áudio lado a lado, download imediato dos arquivos gerados e visualização das métricas de sincronização.
+- 📥 **Download Individual dos Arquivos Gerados**: Download individual de cada arquivo gerado (vídeos MP4 dublados e áudios WAV identificados claramente com o nome e idioma), além de players de prévia imediata e tabela detalhada de métricas.
 - ✍️ **Aba de Clonagem Livre (TTS)**: Permite sintetizar qualquer texto digitado com a sua voz clonada.
 
 ---
@@ -75,7 +75,7 @@ flowchart LR
    - **Passo 2:** Carrega o Whisper e o OmniVoice na VRAM da GPU.
    - **Passo 3:** Compila o motor de sincronização temporal e tradução robusta.
    - **Passo 4:** Inicia a aplicação Gradio e gera o link público compartilhavel (`https://...gradio.live`).
-4. Abra o link da interface, suba o seu vídeo ou áudio, escolha o idioma de destino e clique em **✨ Dublar e Sincronizar Vídeo/Áudio**.
+4. Abra o link da interface, suba o seu vídeo ou áudio, marque as caixas de seleção com os idiomas de destino desejados (ou utilize o botão **☑️ Selecionar Todos**) e clique em **✨ Dublar e Sincronizar Vídeo/Áudio**. Ao concluir, baixe os vídeos e áudios gerados individualmente!
 
 ---
 
