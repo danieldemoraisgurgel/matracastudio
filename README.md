@@ -17,12 +17,11 @@ O **Matraca Studio** é uma suíte completa de localização e dublagem de víde
 - 🎥 **Entrada Universal de Mídia**: Suporte para vídeos (`.mp4`, `.mov`, `.mkv`, `.avi`), faixas de áudio (`.wav`, `.mp3`, `.m4a`) ou gravação direta pelo microfone.
 - 🗣️ **Reconhecimento Preciso e Transcrição Editável**: Transcrição automática com Whisper e detecção do idioma de origem. Permite **revisar e ajustar palavras, pontuações ou nomes próprios** antes de iniciar a dublagem.
 - 🌍 **Dublagem Multi-Idioma em Lote (Checkboxes)**: Permite selecionar múltiplos idiomas de destino simultâneos (Inglês, Espanhol, Francês, Alemão, etc.). Cada idioma é traduzido e sintetizado no idioma correto de forma estrita e sequencial.
-- 🧬 **Clonagem de Voz Zero-Shot de Alta Fidelidade (OmniVoice)**: Pré-processamento e normalização vocal com `loudnorm` e filtro passa-alta, preservando o timbre, entonação e características vocais únicas em cada idioma.
-- ⏱️ **Sincronização Temporal Milimétrica (Pronta para YouTube)**: Ajuste fino com filtro `atempo` via FFmpeg preservando o tom (*pitch-preserved time stretch*), garantindo que a fala case perfeitamente com a duração do vídeo original.
-- 🎧 **Qualidade de Áudio de Estúdio (48 kHz / AAC 256 kbps)**: Exportação em 48.000 Hz para conformidade total com os padrões de streaming e publicação em alta resolução no YouTube.
+- 🧬 **Clonagem de Voz Zero-Shot de Alta Fidelidade (OmniVoice)**: Extração acústica pura e alinhada com Whisper, preservando o timbre natural, entonação e características vocais únicas de quem falou em cada idioma de destino.
+- ⏱️ **Sincronização Temporal Milimétrica (Pronta para YouTube)**: Algoritmo inteligente com filtro `atempo` via FFmpeg preservando o tom natural (*pitch-preserved time stretch*), garantindo que a fala dublada case perfeitamente com a duração do vídeo original.
 - 🧹 **Gestão Eficiente de GPU**: Liberação imediata de VRAM com `torch.cuda.empty_cache()` após cada idioma, prevenindo estouro de memória (*CUDA Out Of Memory*) na GPU T4.
-- 🎬 **Remuxing Instantâneo de Vídeo**: Substituição da trilha de áudio no vídeo original usando cópia de stream (`-c:v copy`), sem perda de qualidade visual e renderização em segundos.
-- 📥 **Download Individual dos Arquivos Gerados**: Download individual de cada arquivo gerado (vídeos MP4 dublados e áudios WAV 48kHz identificados por idioma), além de players de prévia imediata.
+- 🎬 **Remuxing Instantâneo de Vídeo**: Substituição direta da trilha de áudio no vídeo original usando cópia de stream (`-c:v copy`), sem perda de qualidade visual e renderização em segundos.
+- 📥 **Download Individual dos Arquivos Gerados**: Download individual direto de cada arquivo gerado (vídeos MP4 dublados e áudios WAV identificados por idioma), além de tabela completa com métricas de sincronização e transcrições geradas.
 - ✍️ **Aba de Clonagem Livre (TTS)**: Permite sintetizar qualquer texto digitado com a sua voz clonada.
 
 ---
