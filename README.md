@@ -1,4 +1,4 @@
-# 🎙️ Matraca Studio — Dublador & Clonador de Voz com IA
+# 🎙️ Matraca — Dublador & Clonador de Voz com IA
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/danieldemoraisgurgel/matracastudio/blob/main/OmniVoice_Dubbing.ipynb)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
