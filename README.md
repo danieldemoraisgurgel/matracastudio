@@ -1,6 +1,6 @@
 # 🎙️ Matraca Studio — Dublador & Clonador de Voz com IA
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/danieldemoraisgurgel/matracastudio/blob/main/OmniVoice_Dubbing.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/danieldemoraisgurgel/matracastudio/blob/main/Matraca_Studio.ipynb)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue.svg)
 ![Framework](https://img.shields.io/badge/Framework-OmniVoice%20%7C%20Whisper-brightgreen.svg)
@@ -66,7 +66,7 @@ flowchart LR
 ## 🚀 Como Executar no Google Colab
 
 1. Abra o notebook diretamente no Google Colab clicando no badge abaixo:  
-   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/danieldemoraisgurgel/matracastudio/blob/main/OmniVoice_Dubbing.ipynb)
+   [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/danieldemoraisgurgel/matracastudio/blob/main/Matraca_Studio.ipynb)
 2. Ative a aceleração por GPU:
    - No menu superior, acerte em **Ambiente de Execução** (*Runtime*) ➔ **Alterar tipo de ambiente de execução** (*Change runtime type*).
    - Selecione **T4 GPU** e salve.
@@ -83,7 +83,7 @@ flowchart LR
 
 ```text
 matracastudio/
-├── OmniVoice_Dubbing.ipynb   # Notebook completo com backend e interface Gradio
+├── Matraca_Studio.ipynb      # Notebook completo com backend e interface Gradio
 ├── README.md                 # Documentação oficial do projeto
 ├── LICENSE                   # Licença MIT
 └── .gitignore                # Arquivos e extensões ignoradas no versionamento
